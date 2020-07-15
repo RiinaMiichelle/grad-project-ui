@@ -13,6 +13,8 @@ const dogs = (state = initialDogState, action) => {
     case actionTypes.RETRIEVED_DOGS:
       newState.dogs = action.value;
       return newState
+    // case actionTypes.CREATE_DOG:
+    //   newState.dogs = action.value;
     default: 
       return state
   }

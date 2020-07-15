@@ -48,8 +48,8 @@ class AdminHome extends React.Component {
       <div>
         <div>Hello Admin!</div>
         <button onClick={() => this.pickContent(CONTENT_TYPES.PET_REGISTRY)}>Pet Registry</button>
-        <button onClick={() => this.pickContent(CONTENT_TYPES.APPROVE_RESERVATION)}>View reservation requests</button>
-        <button onClick={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}>View current reservations</button>
+        <button onClick={() => this.pickContent(CONTENT_TYPES.APPROVE_RESERVATION)}>Reservation Requests</button>
+        <button onClick={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}>Current Reservations</button>
         {content}
       </div>
     )

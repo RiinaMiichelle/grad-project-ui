@@ -13,15 +13,13 @@ class EndUserViewReservations extends React.Component {
   render() {
     return (
       <div>
-        <h2>Your reservation history:</h2>
-        <div>
-          
+        <h2>Reservation History:</h2>
+        <div class="reservation-container">
+          <div>1</div>
         </div>
-
       </div>
     )
   }
-
 }
 
 export default EndUserViewReservations;

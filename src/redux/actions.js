@@ -1,3 +1,4 @@
+const superagent = require('superagent');
 
 
 const dogStockPhotos = [
@@ -14,7 +15,9 @@ const getRandomDogPhoto = () => {
 
 const ACTION_TYPE = {
   RETRIEVED_DOGS: 'RETRIEVED_DOGS',
-  CREATE_DOG: 'CREATE_DOG' 
+  CREATE_DOG: 'CREATE_DOG',
+  CREATE_RESERVARION: 'CREATE_RESERVATION',
+  RETRIEVED_RESERVATIONS: 'RETRIEVED_RESERVATIONS'
 };
 
 
@@ -23,8 +26,19 @@ const createDog = (dog) => ({
   value: dog
 })
 
+
 const createADog = (dispatch) => () => {
-  return fetch('http://localhost:4000/')
+  superagent
+    .post('http://localhost:4000/dogs')
+    .send({ name:'', breed:'', gender:'', age:'', weight:''})
+    .set('accept', 'json')
+    .then(res => {  
+      // alert('yay got ' + JSON.stringify(res.body))
+      dispatch(createDog(res))
+    .end((err, res) => {
+      // Calling the end function will send the request
+    });
+  })
 }
 
 
@@ -32,7 +46,6 @@ const retrievedDogs = (dogs) => ({
   type: ACTION_TYPE.RETRIEVED_DOGS,
   value: dogs
 })
-
 
 
 const getAllDogs = (dispatch) => () => {
@@ -48,7 +61,25 @@ const getAllDogs = (dispatch) => () => {
     });
 }
 
+
+const createReservation = (reservation) => ({
+  type: ACTION_TYPE.CREATE_RESERVARION,
+  value: reservation
+})
+
+
+
+const retrievedRerservations = (reservations) => ({
+  type: ACTION_TYPE.RETRIEVED_RESERVATIONS,
+  value: reservations
+})
+
+
+
+
+
 export default {
   actionTypes: ACTION_TYPE,
-  getAllDogs
+  getAllDogs,
+  createADog
 }

@@ -43,8 +43,8 @@ class EndUserHome extends React.Component {
     return (
       <div>
         <div>Hello End User!</div>
-        <button onClick={() => this.pickContent(CONTENT_TYPES.MAKE_RESERVATION)}>Make a Reservation</button>
-        <button onClick={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}>View a Reservation</button>
+        <button onClick={() => this.pickContent(CONTENT_TYPES.MAKE_RESERVATION)}>Reserve a Pet</button>
+        <button onClick={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}>Your Reservations</button>
         {content}
       </div>
     )

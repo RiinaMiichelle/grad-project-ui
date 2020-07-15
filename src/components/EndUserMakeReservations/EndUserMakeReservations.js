@@ -9,9 +9,7 @@ function MyVerticallyCenteredModal(props) {
 
   const onSubmit = () => {
     // do something with the fields
-    console.log('onSubmit')
-    console.log(field1);
-    console.log(field2);
+
   }
 
   return (
@@ -27,16 +25,13 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>Date</div>
-        <input onChange={(e) => setField1(e.target.value)}/>
-        <div>Time</div>
-        <input onChange={(e) => setField2(e.target.value)}/>
-        <br></br>
-        <button disabled={!field1 || !field2} onClick={onSubmit}>Submit Request</button>
+        <div>Request Date</div>
+        <input placeholder="YYYY-MM-DD" onChange={(e) => setField1(e.target.value)}/>
+        {/* <div>Time</div> */}
+        {/* <input placeholder="Pickup Time" onChange={(e) => setField2(e.target.value)}   || !field2/>
+        <br></br> */}
+        <button disabled={!field1} onClick={onSubmit}>Submit Request</button>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 }
