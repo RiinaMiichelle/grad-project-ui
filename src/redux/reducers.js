@@ -13,15 +13,49 @@ const dogs = (state = initialDogState, action) => {
     case actionTypes.RETRIEVED_DOGS:
       newState.dogs = action.value;
       return newState
-    // case actionTypes.CREATE_DOG:
-    //   newState.dogs = action.value;
+    case actionTypes.CREATE_DOG:
+      newState.dogs = action.value;
+      return newState
     default: 
       return state
   }
 }
 
-const initialReservationState = {};
+const initialReservationState = {
+  reservations: []
+};
 
-const reserverations = (state = initialReservationState, actions) => state;
+const reserverations = (state = initialReservationState, action) => {
+  const newState = { ...state };
+  switch(action.type) {
+    case actionTypes.RETRIEVED_RESERVATIONS:
+      newState.reservations = action.value;
+      return newState
+    case actionTypes.CREATE_RESERVATION:
+      newState.reservations = action.value;
+      return newState
+    default:
+      return state
+  }
+} 
 
-export default combineReducers({ dogs, reserverations });
+const initialReviewState = {
+  reviews: []
+};
+
+const reviews = (state = initialReviewState, action) => {
+  const newState = { ...state };
+  switch(action.type) {
+    case actionTypes.RETRIEVED_REVIEWS:
+      newState.reviews = action.value;
+      return newState
+    case actionTypes.CREATE_REVIEW:
+      newState.reviews = action.value;
+      return newState
+    default:
+      return state
+  }
+} 
+
+
+export default combineReducers({ dogs, reserverations, reviews });

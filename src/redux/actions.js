@@ -14,10 +14,12 @@ const getRandomDogPhoto = () => {
 }
 
 const ACTION_TYPE = {
-  RETRIEVED_DOGS: 'RETRIEVED_DOGS',
   CREATE_DOG: 'CREATE_DOG',
-  CREATE_RESERVARION: 'CREATE_RESERVATION',
-  RETRIEVED_RESERVATIONS: 'RETRIEVED_RESERVATIONS'
+  RETRIEVED_DOGS: 'RETRIEVED_DOGS',
+  CREATE_RESERVATION: 'CREATE_RESERVATION',
+  RETRIEVED_RESERVATIONS: 'RETRIEVED_RESERVATIONS',
+  CREATE_REVIEW: 'CREATE_REVIEW',
+  RETRIEVED_REVIEWS: 'RETRIEVED_REVIEWS'
 };
 
 
@@ -25,7 +27,6 @@ const createDog = (dog) => ({
   type: ACTION_TYPE.CREATE_DOG,
   value: dog
 })
-
 
 const createADog = (dispatch) => () => {
   superagent
@@ -41,12 +42,10 @@ const createADog = (dispatch) => () => {
   })
 }
 
-
 const retrievedDogs = (dogs) => ({
   type: ACTION_TYPE.RETRIEVED_DOGS,
   value: dogs
 })
-
 
 const getAllDogs = (dispatch) => () => {
   return fetch('http://localhost:4000/dogs')
@@ -62,24 +61,89 @@ const getAllDogs = (dispatch) => () => {
 }
 
 
+
+
 const createReservation = (reservation) => ({
-  type: ACTION_TYPE.CREATE_RESERVARION,
+  type: ACTION_TYPE.CREATE_RESERVATION,
   value: reservation
 })
 
-
+const createAReservation = (dispatch) => () => {
+  superagent
+    .post('http://localhost:4000/reservations')
+    //I think this is wrong!!!
+    .send({ date:'', user_id:'', dog_id:'' })
+    .set('accept', 'json')
+    .then(res => {  
+      // alert('yay got ' + JSON.stringify(res.body))
+      dispatch(createReservation(res))
+    .end((err, res) => {
+      // Calling the end function will send the request
+    });
+  })
+}
 
 const retrievedRerservations = (reservations) => ({
   type: ACTION_TYPE.RETRIEVED_RESERVATIONS,
   value: reservations
 })
 
+const getAllReservations = (dispatch) => () => {
+  return fetch('http://localhost:4000/reservations')
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((responseJson) => {
+      return dispatch(retrievedRerservations(responseJson));
+    });
+}
 
+
+
+
+const createReview = (review) => ({
+  type: ACTION_TYPE.CREATE_REVIEW,
+  value: review
+})
+
+const createAReview = (dispatch) => () => {
+  superagent
+    .post('http://localhost:4000/reviews')
+    //i think this is wrong!!!
+    .send({ reservation_id:'', text:''})
+    .set('accept', 'json')
+    .then(res => {  
+      // alert('yay got ' + JSON.stringify(res.body))
+      dispatch(createReview(res))
+    .end((err, res) => {
+      // Calling the end function will send the request
+    });
+  })
+}
+
+const retrievedReviews = (reviews) => ({
+  type: ACTION_TYPE.RETRIEVED_REVIEWS,
+  value: reviews
+})
+
+const getAllReviews = (dispatch) => () => {
+  return fetch('http://localhost:4000/reviews')
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((responseJson) => {
+      return dispatch(retrievedReviews(responseJson));
+    });
+}
 
 
 
 export default {
   actionTypes: ACTION_TYPE,
   getAllDogs,
-  createADog
+  createADog,
+  getAllReservations,
+  createAReservation,
+  getAllReviews,
+  createAReview
 }
