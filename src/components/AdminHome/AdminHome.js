@@ -2,7 +2,6 @@ import React from 'react';
 import AdminApproveReservations from '../AdminApproveReservation/AdminApproveReservations';
 import AdminViewReservations from '../AdminViewReservations/AdminViewReservations';
 import AdminPetRegistry from '../AdminPetRegistry/AdminPetRegistry';
-import reservations from '../../mockJson/reservations';
 import './index.css';
 
 const CONTENT_TYPES = {

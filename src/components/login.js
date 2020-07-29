@@ -57,7 +57,7 @@ class Login extends React.Component {
 
     return (
       <div class="loginbackground">
-        <Container>
+        <Container class="formbackground">
           <form onSubmit={this.onLogin}>
             <TextField
               name="username"
@@ -73,7 +73,7 @@ class Login extends React.Component {
               onChange={(e) => this.updateInput('password', e.target.value)}
             />
             <br></br>
-            <Button type="submit" variant="contained" color="primary">Login</Button>
+            <Button type="submit" variant="contained" class="loginbutton" color="primary">Login</Button>
           </form>
         </Container>
       </div>

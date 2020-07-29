@@ -34,7 +34,7 @@ const createADog = (dispatch) => () => {
     .send({ name:'', breed:'', gender:'', age:'', weight:''})
     .set('accept', 'json')
     .then(res => {  
-      // alert('yay got ' + JSON.stringify(res.body))
+      alert('yay got ' + JSON.stringify(res.body))
       dispatch(createDog(res))
     .end((err, res) => {
       // Calling the end function will send the request
@@ -71,11 +71,10 @@ const createReservation = (reservation) => ({
 const createAReservation = (dispatch) => () => {
   superagent
     .post('http://localhost:4000/reservations')
-    //I think this is wrong!!!
-    .send({ date:'', user_id:'', dog_id:'' })
+    .send({ date:'', status:'', dog_id:'', user_id:'' })
     .set('accept', 'json')
     .then(res => {  
-      // alert('yay got ' + JSON.stringify(res.body))
+      alert('yay got ' + JSON.stringify(res.body))
       dispatch(createReservation(res))
     .end((err, res) => {
       // Calling the end function will send the request
@@ -109,11 +108,10 @@ const createReview = (review) => ({
 const createAReview = (dispatch) => () => {
   superagent
     .post('http://localhost:4000/reviews')
-    //i think this is wrong!!!
-    .send({ reservation_id:'', text:''})
+    .send({ reservation_id:'', dog_id:'', review_text:''})
     .set('accept', 'json')
     .then(res => {  
-      // alert('yay got ' + JSON.stringify(res.body))
+      alert('yay got ' + JSON.stringify(res.body))
       dispatch(createReview(res))
     .end((err, res) => {
       // Calling the end function will send the request

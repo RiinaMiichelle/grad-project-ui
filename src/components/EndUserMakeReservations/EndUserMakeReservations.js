@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import './index.css'
+import {connect} from 'react-redux';
 
 function MyVerticallyCenteredModal(props) {
   const [field1, setField1] = React.useState(null);
@@ -59,6 +60,10 @@ class EndUserMakeReservations extends React.Component {
     super(props)
   }
 
+  // componentDidMount() {
+
+  // }
+
 
   render() {
     const { dogs } = this.props;
@@ -85,5 +90,11 @@ class EndUserMakeReservations extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    dogs: state.dogs
+  }
+}
 
-export default EndUserMakeReservations;
+
+export default connect(mapStateToProps)(EndUserMakeReservations);

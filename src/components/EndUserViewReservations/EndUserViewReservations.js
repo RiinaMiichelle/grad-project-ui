@@ -1,6 +1,5 @@
 import React from 'react';
 import './index.css'
-import reservations from '../../mockJson/reservations';
 
 class EndUserViewReservations extends React.Component {
   constructor(props) {
