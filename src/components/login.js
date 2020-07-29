@@ -56,7 +56,7 @@ class Login extends React.Component {
     }
 
     return (
-      <div>
+      <div class="loginbackground">
         <Container>
           <form onSubmit={this.onLogin}>
             <TextField
