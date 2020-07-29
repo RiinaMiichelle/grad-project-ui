@@ -41,6 +41,7 @@ class Login extends React.Component {
     document.cookie = "loggedIn=true";
     document.cookie = `userType=${userType}`
     document.cookie = `username=${username}`
+    document.cookie = `userId=1`; // TODO make the user id real
 
     setUserInfo({ loggedIn: true, userType, username });
 

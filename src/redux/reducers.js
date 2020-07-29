@@ -25,7 +25,7 @@ const initialReservationState = {
   reservations: []
 };
 
-const reserverations = (state = initialReservationState, action) => {
+const reservations = (state = initialReservationState, action) => {
   const newState = { ...state };
   switch(action.type) {
     case actionTypes.RETRIEVED_RESERVATIONS:
@@ -58,4 +58,4 @@ const reviews = (state = initialReviewState, action) => {
 } 
 
 
-export default combineReducers({ dogs, reserverations, reviews });
+export default combineReducers({ dogs, reservations, reviews });

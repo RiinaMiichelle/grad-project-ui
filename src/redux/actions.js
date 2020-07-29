@@ -68,18 +68,15 @@ const createReservation = (reservation) => ({
   value: reservation
 })
 
-const createAReservation = (dispatch) => () => {
+const createAReservation = (dispatch) => (date, userId, dogId) => {
+  console.log({ date: date, status: 'APPROVED', dog_id: dogId, user_id: userId })
   superagent
     .post('http://localhost:4000/reservations')
-    .send({ date:'', status:'', dog_id:'', user_id:'' })
+    .send({ date: date, status: 'APPROVED', dog_id: dogId, user_id: userId })
     .set('accept', 'json')
     .then(res => {  
-      alert('yay got ' + JSON.stringify(res.body))
       dispatch(createReservation(res))
-    .end((err, res) => {
-      // Calling the end function will send the request
     });
-  })
 }
 
 const retrievedRerservations = (reservations) => ({
@@ -138,6 +135,14 @@ const getAllReviews = (dispatch) => () => {
 
 export default {
   actionTypes: ACTION_TYPE,
+  bindDispatch: (dispatch) => ({
+    getAllDogs: getAllDogs(dispatch),
+    createADog: createADog(dispatch),
+    getAllReservations: getAllReservations(dispatch),
+    createAReservation: createAReservation(dispatch),
+    getAllReviews: getAllReviews(dispatch),
+    createAReview: createAReview(dispatch)
+  }),
   getAllDogs,
   createADog,
   getAllReservations,

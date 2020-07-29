@@ -3,15 +3,22 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import './index.css'
 import {connect} from 'react-redux';
+import actions from '../../redux/actions';
+import { getCookies } from "../../Utils";
 
 function MyVerticallyCenteredModal(props) {
-  const [field1, setField1] = React.useState(null);
-  const [field2, setField2] = React.useState(null);
+  const [date, setDate] = React.useState(null);
 
   const onSubmit = () => {
+    const { dog } = props;
+    const userId = getCookies().userId;
+    const { id } = dog;
+    props.reduxActions.createAReservation(date, userId, id);
     // do something with the fields
 
   }
+
+
 
   return (
     <Modal
@@ -27,17 +34,14 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Header>
       <Modal.Body>
         <div>Request Date</div>
-        <input placeholder="YYYY-MM-DD" onChange={(e) => setField1(e.target.value)}/>
-        {/* <div>Time</div> */}
-        {/* <input placeholder="Pickup Time" onChange={(e) => setField2(e.target.value)}   || !field2/>
-        <br></br> */}
-        <button disabled={!field1} onClick={onSubmit}>Submit Request</button>
+        <input placeholder="YYYY-MM-DD" onChange={(e) => setDate(e.target.value)}/>
+        <button disabled={!date} onClick={onSubmit}>Submit Request</button>
       </Modal.Body>
     </Modal>
   );
 }
 
-function DogDetailsModal() {
+function DogDetailsModal(props) {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
@@ -47,6 +51,8 @@ function DogDetailsModal() {
       </Button>
 
       <MyVerticallyCenteredModal
+        reduxActions={props.reduxActions}
+        dog={props.dog}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
@@ -60,13 +66,21 @@ class EndUserMakeReservations extends React.Component {
     super(props)
   }
 
-  // componentDidMount() {
-
-  // }
+  componentDidMount() {
+    const { dogs, reduxActions } = this.props;
+    if (!dogs || dogs.length === 0) {
+      reduxActions.getAllDogs();
+    }
+  }
 
 
   render() {
+
     const { dogs } = this.props;
+
+    if (!dogs) {
+      return <div>loading...</div>;
+    }
 
     const dogsHtml = dogs.map((dog, idx) => {
       return (
@@ -75,9 +89,9 @@ class EndUserMakeReservations extends React.Component {
             Dog id: {dog.id}<br></br>
             Name: {dog.name}<br></br>
             Breed: {dog.breed}<br></br>
-            Age: {dog.age}<br></br>
             Gender: {dog.gender}<br></br>
-          <DogDetailsModal />
+            Age: {dog.age}<br></br>
+          <DogDetailsModal reduxActions={this.props.reduxActions} dog={dog} />
         </div>
       );
     })
@@ -92,9 +106,14 @@ class EndUserMakeReservations extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    dogs: state.dogs
+    dogs: state.dogs.dogs
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    reduxActions: actions.bindDispatch(dispatch)
+  }
+}
 
-export default connect(mapStateToProps)(EndUserMakeReservations);
+export default connect(mapStateToProps, mapDispatchToProps)(EndUserMakeReservations);
