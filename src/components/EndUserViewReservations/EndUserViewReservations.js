@@ -28,6 +28,7 @@ class EndUserViewReservations extends React.Component {
       return <div>loading...</div>;
     }
 
+
     const reservationsHtml = reservations.map((reservation, idx) => {
       return (
         <div class={`box${idx + 1}`}>
@@ -42,7 +43,7 @@ class EndUserViewReservations extends React.Component {
 
     return (
       <div class="reservations-container">
-        {reservationsHtml}
+          {reservationsHtml}
       </div>
     )
   }

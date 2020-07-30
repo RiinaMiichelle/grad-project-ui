@@ -82,6 +82,7 @@ class EndUserMakeReservations extends React.Component {
       return <div>loading...</div>;
     }
 
+    
     const dogsHtml = dogs.map((dog, idx) => {
       return (
         <div class={`box${idx + 1}`}>

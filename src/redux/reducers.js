@@ -14,7 +14,7 @@ const dogs = (state = initialDogState, action) => {
       newState.dogs = action.value;
       return newState
     case actionTypes.CREATE_DOG:
-      newState.dogs = action.value;
+      newState.dogs.push(action.value);
       return newState
     default: 
       return state
@@ -32,7 +32,7 @@ const reservations = (state = initialReservationState, action) => {
       newState.reservations = action.value;
       return newState
     case actionTypes.CREATE_RESERVATION:
-      newState.reservations = action.value;
+      newState.reservations.push(action.value);
       return newState
     default:
       return state
@@ -50,7 +50,7 @@ const reviews = (state = initialReviewState, action) => {
       newState.reviews = action.value;
       return newState
     case actionTypes.CREATE_REVIEW:
-      newState.reviews = action.value;
+      newState.reviews.push(action.value);
       return newState
     default:
       return state
