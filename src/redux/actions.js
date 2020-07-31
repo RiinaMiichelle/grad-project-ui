@@ -53,9 +53,6 @@ const getAllDogs = (dispatch) => () => {
       return resp.json();
     })
     .then((responseJson) => {
-      responseJson.forEach((dog) => {
-        dog.image = getRandomDogPhoto();
-      });
       return dispatch(retrievedDogs(responseJson));
     });
 }
@@ -75,7 +72,7 @@ const createAReservation = (dispatch) => (date, userId, dogId) => {
     .send({ date: date, status: 'APPROVED', dog_id: dogId, user_id: userId })
     .set('accept', 'json')
     .then(res => {  
-      dispatch(createReservation(res))
+      dispatch(createReservation(res.body))
     });
 }
 

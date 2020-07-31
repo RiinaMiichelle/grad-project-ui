@@ -32,7 +32,9 @@ const reservations = (state = initialReservationState, action) => {
       newState.reservations = action.value;
       return newState
     case actionTypes.CREATE_RESERVATION:
+      console.log(newState);
       newState.reservations.push(action.value);
+      console.log(newState);
       return newState
     default:
       return state

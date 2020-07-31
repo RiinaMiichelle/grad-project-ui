@@ -39,7 +39,7 @@ const Navigation = (props) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Happy Paws
+          Happy Paws
           </Typography>
           <Link to="/about">
             <Button variant="contained" color="primary">About</Button>

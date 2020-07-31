@@ -2,6 +2,7 @@ import React from 'react';
 import EndUserMakeReservations from '../EndUserMakeReservations/EndUserMakeReservations';
 import EndUserViewReservations from '../EndUserViewReservations/EndUserViewReservations';
 import './index.css'
+import { getCookies } from "../../Utils"
 
 
 const CONTENT_TYPES = {
@@ -35,14 +36,21 @@ class EndUserHome extends React.Component {
     const { dogs } = this.props;
 
     if (contentType === CONTENT_TYPES.MAKE_RESERVATION) {
-      content = <EndUserMakeReservations dogs={dogs} />;
+      content = (
+        <EndUserMakeReservations
+          dogs={dogs}
+          goToReservations={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}
+        />
+      );
     } else if (contentType === CONTENT_TYPES.VIEW_RESERVATION) {
-      content = <EndUserViewReservations/>;
+      content = <EndUserViewReservations dogs={dogs} />;
     }
+
+    const cookies = getCookies();
 
     return (
       <div>
-        <div>Hello End User!</div>
+        <div>Hello, {cookies.username}!</div>
         <button onClick={() => this.pickContent(CONTENT_TYPES.MAKE_RESERVATION)}>Reserve a Pet</button>
         <button onClick={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}>Your Reservations</button>
         {content}

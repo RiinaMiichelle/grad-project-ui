@@ -1,4 +1,5 @@
 import React from 'react';
+import lodash from 'lodash';
 import './index.css';
 import {connect} from 'react-redux';
 import actions from '../../redux/actions';
@@ -12,31 +13,31 @@ class EndUserViewReservations extends React.Component {
   }
 
   componentDidMount() {
-    const { reservations, reduxActions } = this.props;
-    if (!reservations || reservations.length === 0) {
-      reduxActions.getAllReservations();
-    }
+    const { reduxActions } = this.props;
+    reduxActions.getAllReservations();
   }
-
-
 
   render() {
 
-    const { reservations } = this.props;
+    const { reservations, dogs } = this.props;
+
+    const dogsById = {};
+    dogs.forEach(dog => dogsById[dog.id] = dog);
 
     if (!reservations) {
       return <div>loading...</div>;
     }
 
-
     const reservationsHtml = reservations.map((reservation, idx) => {
+      const dogForReservation = dogsById[reservation.dog_id];
+      const reservationDate = new Date(Date.parse(reservation.date));
       return (
         <div class={`box${idx + 1}`}>
-            Reservation id: {reservation.id}<br></br>
-            Date: {reservation.date}<br></br>
-            Status: {reservation.status}<br></br>
-            Dog id: {reservation.dog_id}<br></br>
-            User id: {reservation.user_id}<br></br>
+            Date: {reservationDate.toDateString()}<br></br>
+            Status: {lodash.capitalize(reservation.status)}<br></br>
+            Dog Name: {lodash.capitalize(dogForReservation.name)}<br></br>
+            Dog Breed: {lodash.capitalize(dogForReservation.breed)}<br></br>
+            Dog Gender: {lodash.capitalize(dogForReservation.gender)}<br></br>
         </div>
       );
     })
