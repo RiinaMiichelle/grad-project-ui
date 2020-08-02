@@ -1,7 +1,35 @@
+.nav-title {
+  font-family: 'Courgette', cursive;
+  font-size: 30px;
+}
+
+.nav-about-button {
+  font-family: 'Raleway', sans-serif;
+  background-color:white;
+  border-radius: 5px;
+}
+
+.nav-home-button {
+  font-family: 'Raleway', sans-serif;
+  background-color:white;
+  border-radius: 5px;
+}
+
+.hello-username {
+  font-family: 'Raleway', sans-serif;
+  font-size: 80px;
+}
+
+.menu-options {
+  font-family: 'Raleway', sans-serif;
+}
+
+
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  font-family: 'Raleway', sans-serif;
 }
 
 .container div {
@@ -36,18 +64,180 @@
   color: blue;
 }
 
+.end-user-buttons {
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-top: 10px;
+  font-family: 'Raleway', sans-serif;
+  background-color: white;
+}
+
+.reserve-button {
+  color: black;
+}
+
+
+.available-dogs {
+  font-family: 'Courgette', cursive;
+  font-size: 55px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+
 .reservations-container {
   text-align: center;
   margin-top: 20px;
 }
 
+.reservation-history {
+  font-family: 'Courgette', cursive;
+  font-size: 55px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
 .reservations-container div {
   border: 1px solid;
-  padding-top: 30px;
+  padding-top: 23px;
   width: 80%;
   height: 200px;
   margin-bottom: 20px;
   border-radius: 30px;
   display: inline-block;
   background-color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
 }
+
+
+
+
+
+.reservation-image {
+  height: 100px;
+  width: 100px;
+}
+
+.about-container {
+  margin: auto;
+  width: 80%;
+  border: 3px black;
+  padding: 10px;
+}
+
+
+.about-welcome {
+  font-size: 55px;
+  padding-top: 40px;
+  font-family: 'Courgette', cursive;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.about-mission {
+  font-size: 25px;
+  padding-bottom: 25px;
+  font-family: 'Raleway', sans-serif;
+}
+
+
+.about-explanation {
+  font-size: 20px;
+  padding-top: 10px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.about-images-text {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: 'Raleway', sans-serif;
+}
+
+.about-images-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 40px;
+}
+
+.about-dogs {
+  font-size: 35px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+  justify-content: center;
+}
+
+.material-icons {
+  margin-left: 5px;
+}
+
+.contact {
+  
+}
+
+.contact-us {
+  font-size: 55px;
+  padding-top: 40px;
+  font-family: 'Courgette', cursive;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.contain {
+  display: flex;
+  flex-direction: row;
+}
+
+.contact-area {
+  border: 1px solid black;
+  height: 600px;
+  width: 450px;
+  margin-left: 130px;
+  margin-bottom: 40px;
+  padding: 20px;
+  text-align: center;
+}
+
+.form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.form-header {
+  font-size: 25px;
+  font-family: 'Courgette', cursive;
+  padding: 5px;
+}
+
+
+.contact-form-labels {
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  align-content: space-around;
+}
+
+.contact-form-inputs {
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  align-content: space-around;
+}
+
+.contact-form-submit {
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  width: 40%;
+  margin: auto;
+  justify-content: center;
+}
+

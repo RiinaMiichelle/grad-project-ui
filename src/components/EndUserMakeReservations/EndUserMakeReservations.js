@@ -56,7 +56,7 @@ function DogDetailsModal(props) {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button class="reserve-button" variant="primary" onClick={() => setModalShow(true)}>
         Reserve Me!
       </Button>
 
@@ -105,7 +105,7 @@ class EndUserMakeReservations extends React.Component {
             Breed: {dog.breed}<br></br>
             Gender: {dog.gender}<br></br>
             Age: {dog.age}<br></br>
-            Weight:{dog.weight}<br></br>
+            Weight: {dog.weight}<br></br>
           <DogDetailsModal
             goToReservations={goToReservations}
             reduxActions={this.props.reduxActions}
@@ -116,8 +116,11 @@ class EndUserMakeReservations extends React.Component {
     })
 
     return (
-      <div class="container">
-        {dogsHtml}
+      <div>
+        <div class="available-dogs">Available Dogs</div>
+        <div class="container">
+          {dogsHtml}
+        </div>
       </div>
     )
   }

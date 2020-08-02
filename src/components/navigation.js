@@ -39,21 +39,24 @@ const Navigation = (props) => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-          Happy Paws
+          <div class="nav-title">Happy Paws<i class="material-icons">pets</i></div>
           </Typography>
-          <Link to="/about">
-            <Button variant="contained" color="primary">About</Button>
-          </Link>
           {
             loggedIn
             && (
               <div>
                 <Link to="/home">
-                  <Button variant="contained" color="primary">Home</Button>
+                  <Button class="nav-home-button" variant="contained" color="primary">Home</Button>
                 </Link>
               </div>
             )
           }
+          <Link to="/about">
+            <Button class="nav-about-button" variant="contained">About</Button>
+          </Link>
+          <Link to="/contact">
+            <Button class="nav-about-button" variant="contained">Contact</Button>
+          </Link>
           <IconButton
             aria-label="account of current user"
             aria-controls="menu-appbar"
@@ -81,13 +84,13 @@ const Navigation = (props) => {
             {
               loggedIn
               ? (
-                <div>
+                <div class="menu-options">
                   {username && <MenuItem>{`Hello, ${username}`}</MenuItem>}
                   <MenuItem onClick={handleClose} component={Link} to={'/logout'}>Logout</MenuItem>
                 </div>
               )
               : (
-                <div>
+                <div class="menu-options">
                   <MenuItem onClick={handleClose} component={Link} to={'/login'}>Login</MenuItem>
                 </div>
               )

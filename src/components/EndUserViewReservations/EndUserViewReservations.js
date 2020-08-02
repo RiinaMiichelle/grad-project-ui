@@ -31,6 +31,7 @@ class EndUserViewReservations extends React.Component {
     const reservationsHtml = reservations.map((reservation, idx) => {
       const dogForReservation = dogsById[reservation.dog_id];
       const reservationDate = new Date(Date.parse(reservation.date));
+      const dogImage = dogForReservation.image_url;
       return (
         <div class={`box${idx + 1}`}>
             Date: {reservationDate.toDateString()}<br></br>
@@ -38,13 +39,17 @@ class EndUserViewReservations extends React.Component {
             Dog Name: {lodash.capitalize(dogForReservation.name)}<br></br>
             Dog Breed: {lodash.capitalize(dogForReservation.breed)}<br></br>
             Dog Gender: {lodash.capitalize(dogForReservation.gender)}<br></br>
+            <img class="reservation-image" src={dogImage}></img>
         </div>
       );
     })
 
     return (
-      <div class="reservations-container">
-          {reservationsHtml}
+      <div>
+        <div class="reservation-history">Reservations</div>
+        <div class="reservations-container">
+            {reservationsHtml}
+        </div>
       </div>
     )
   }
