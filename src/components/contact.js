@@ -35,6 +35,8 @@ function Contact() {
   return (
     <div class="contact">
       <div class="contact-us">Contact Us</div>
+      <div class="contacts">Phone Number: (512) 802-8262 </div>
+      <div class="contacts">Address: 777 Safe Haven Drive Austin TX, 78704  </div>
       <div class="contain">
         <div class="contact-area">
           <form class="form">
@@ -44,6 +46,9 @@ function Contact() {
             <br></br>
             <label class="contact-form-labels" for="last-name">Last name:</label>
             <input class="contact-form-inputs" type="text" name="lastname" placeholder="Last name"/>
+            <br></br>
+            <label class="contact-form-labels" for="last-name">Email:</label>
+            <input class="contact-form-inputs" type="text" name="email" placeholder="Email"/>
             <br></br>
             <label class="contact-form-labels" for="phone-number">Phone:</label>
             <input class="contact-form-inputs" type="text" name="phone-number" placeholder="Phone number"/>

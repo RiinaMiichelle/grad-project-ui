@@ -17,7 +17,7 @@ function About() {
         to upload a review and any images from your afternoon hike, park playtime etc. 
         Our shelter would love to use both as marketing material to get our dogs adopted!</div>
       <div class="about-images-text">
-        <div class="about-dogs">We love seeing the dogs get out and play!</div>
+        <div class="about-dogs">We love seeing our shelter dogs get out and play!</div>
       </div>
       <div class="about-images-container">
         <img src="https://images.unsplash.com/photo-1562703219-98e4de78fbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" width="500" height="300"></img>
