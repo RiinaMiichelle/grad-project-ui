@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import { getCookies } from '../Utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,9 +20,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const getUserInfo = () => {
+  const cookies = getCookies();
+  return {
+    loggedIn: cookies.loggedIn === 'true' ? true : false,
+    users_name: cookies.users_name,
+    user_id: cookies.userId
+  };
+};
+
 const Navigation = (props) => {
-  const { userInfo } = props;
-  const { username, loggedIn } = userInfo;
+  const { users_name, loggedIn } = getUserInfo();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -34,23 +43,29 @@ const Navigation = (props) => {
     setAnchorEl(null);
   };
 
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-          <div class="nav-title">Happy Paws<i class="material-icons">pets</i></div>
+          <div class="nav-title">
+                Happy Paws<i class="material-icons">pets</i>
+          </div>
           </Typography>
           {
             loggedIn
             && (
               <div>
-                <Link to="/home">
+                {/* <Link to="/home">
                   <Button class="nav-home-button" variant="contained" color="primary">Home</Button>
-                </Link>
+                </Link> */}
               </div>
             )
           }
+          <Link to="/home">
+            <Button class="nav-home-button" variant="contained" color="primary">Home</Button>
+          </Link>
           <Link to="/about">
             <Button class="nav-about-button" variant="contained">About</Button>
           </Link>
@@ -85,13 +100,27 @@ const Navigation = (props) => {
               loggedIn
               ? (
                 <div class="menu-options">
-                  {username && <MenuItem>{`Hello, ${username}`}</MenuItem>}
-                  <MenuItem onClick={handleClose} component={Link} to={'/logout'}>Logout</MenuItem>
+                  {<MenuItem>{`Hello, ${users_name}`}</MenuItem>}
+                  <MenuItem
+                    onClick={() => {
+                      document.cookie.split(";").forEach(function(c) {
+                        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+                      document.location = 'https://auth.pingone.com/e83dff15-2ec2-4ca3-a3cd-ecb8ed94a4dc/as/signoff?post_logout_redirect_uri=http://localhost:3000/home';
+                    }}
+                  >
+                    Logout
+                  </MenuItem>
                 </div>
               )
               : (
                 <div class="menu-options">
-                  <MenuItem onClick={handleClose} component={Link} to={'/login'}>Login</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                        document.location = 'https://auth.pingone.com/e83dff15-2ec2-4ca3-a3cd-ecb8ed94a4dc/as/authorize?client_id=50e41cbf-bb7f-4cf2-9096-25f00fc1fb4a&response_type=id_token&redirect_uri=http://localhost:3000/login';
+                      }}
+                    >
+                      Login
+                    </MenuItem>
                 </div>
               )
             }

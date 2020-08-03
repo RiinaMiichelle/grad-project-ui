@@ -30,6 +30,10 @@ class EndUserHome extends React.Component {
   }
 
   render() {
+    const cookies = getCookies();
+    const isUserLoggedIn = cookies.loggedIn === 'true' ? true : false;
+    const usersName = cookies.users_name;
+
     const { contentType } = this.state;
     let content;
 
@@ -39,6 +43,7 @@ class EndUserHome extends React.Component {
       content = (
         <EndUserMakeReservations
           dogs={dogs}
+          isUserLoggedIn={isUserLoggedIn}
           goToReservations={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}
         />
       );
@@ -46,13 +51,19 @@ class EndUserHome extends React.Component {
       content = <EndUserViewReservations dogs={dogs} />;
     }
 
-    const cookies = getCookies();
-
     return (
       <div>
-        <div classname="hello-username">Hello, {cookies.username}!</div>
-        <button class="end-user-buttons" onClick={() => this.pickContent(CONTENT_TYPES.MAKE_RESERVATION)}>Reserve a Pet</button>
-        <button class="end-user-buttons" onClick={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}>Your Reservations</button>
+        {
+          isUserLoggedIn
+            ? (
+              <div>
+                <div class="hello-username">Hello, {usersName}!</div>
+                <button class="end-user-buttons" onClick={() => this.pickContent(CONTENT_TYPES.MAKE_RESERVATION)}>Reserve a Pet</button>
+                <button class="end-user-buttons" onClick={() => this.pickContent(CONTENT_TYPES.VIEW_RESERVATION)}>Your Reservations</button>
+              </div>
+            )
+            : null
+        }
         {content}
       </div>
     )

@@ -41,10 +41,10 @@ function MyVerticallyCenteredModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>Request Date</div>
-        <input placeholder="YYYY-MM-DD" onChange={(e) => setDate(e.target.value)}/>
+        <div class="request-date">Request Date</div>
+        <input class="request-input" placeholder="YYYY-MM-DD" onChange={(e) => setDate(e.target.value)}/>
         <br/>
-        <button disabled={!date} onClick={onSubmit}>Submit Request</button>
+        <button class="request-button" disabled={!date} onClick={onSubmit}>Submit</button>
       </Modal.Body>
     </Modal>
   );
@@ -53,12 +53,24 @@ function MyVerticallyCenteredModal(props) {
 function DogDetailsModal(props) {
   const [modalShow, setModalShow] = React.useState(false);
 
-
   return (
     <>
-      <Button class="reserve-button" variant="primary" onClick={() => setModalShow(true)}>
-        Reserve Me!
-      </Button>
+      {
+        props.isUserLoggedIn
+          ? (
+            <Button class="reserve-button" variant="primary" onClick={() => setModalShow(true)}>
+              Reserve Me!
+            </Button>
+          )
+          : (
+          <Button class="reserve-button" variant="primary" onClick={() => {
+            document.location = 'https://auth.pingone.com/e83dff15-2ec2-4ca3-a3cd-ecb8ed94a4dc/as/authorize?client_id=50e41cbf-bb7f-4cf2-9096-25f00fc1fb4a&response_type=id_token&redirect_uri=http://localhost:3000/login'
+          }}>
+            Login To Reserve Me!
+          </Button>
+        )
+      }
+
 
       <MyVerticallyCenteredModal
         goToReservations={props.goToReservations}
@@ -98,8 +110,6 @@ class EndUserMakeReservations extends React.Component {
     const dogsHtml = dogs.map((dog, idx) => {
       return (
         <div class={`box${idx + 1}`}>
-            {/* <img src={dog.image} class="dog-image"/><br></br> */}
-            {/* Dog id: {dog.id}<br></br> */}
             <img class="dog-image" src={dog.image_url} /><br></br>
             Name: {dog.name}<br></br>
             Breed: {dog.breed}<br></br>
@@ -107,6 +117,7 @@ class EndUserMakeReservations extends React.Component {
             Age: {dog.age}<br></br>
             Weight: {dog.weight}<br></br>
           <DogDetailsModal
+            isUserLoggedIn={this.props.isUserLoggedIn}
             goToReservations={goToReservations}
             reduxActions={this.props.reduxActions}
             dog={dog}

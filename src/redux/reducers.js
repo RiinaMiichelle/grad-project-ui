@@ -1,4 +1,5 @@
 import actions from './actions';
+import lodash from 'lodash';
 import { combineReducers } from 'redux';
 
 const actionTypes = actions.actionTypes;
@@ -8,7 +9,7 @@ const initialDogState = {
 };
 
 const dogs = (state = initialDogState, action) => {
-  const newState = { ...state };
+  const newState = lodash.cloneDeep(state);
   switch(action.type) {
     case actionTypes.RETRIEVED_DOGS:
       newState.dogs = action.value;
@@ -26,15 +27,13 @@ const initialReservationState = {
 };
 
 const reservations = (state = initialReservationState, action) => {
-  const newState = { ...state };
+  const newState = lodash.cloneDeep(state);
   switch(action.type) {
     case actionTypes.RETRIEVED_RESERVATIONS:
       newState.reservations = action.value;
       return newState
     case actionTypes.CREATE_RESERVATION:
-      console.log(newState);
       newState.reservations.push(action.value);
-      console.log(newState);
       return newState
     default:
       return state
@@ -46,7 +45,7 @@ const initialReviewState = {
 };
 
 const reviews = (state = initialReviewState, action) => {
-  const newState = { ...state };
+  const newState = lodash.cloneDeep(state);
   switch(action.type) {
     case actionTypes.RETRIEVED_REVIEWS:
       newState.reviews = action.value;

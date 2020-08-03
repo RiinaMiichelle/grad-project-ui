@@ -7,15 +7,15 @@ import reservations from '../mockJson/reservations';
 const Home = (props) => {
   const { userInfo } = props;
 
-  if (!userInfo.loggedIn) {
-    return <Redirect to="/login" />
-  }
+  // if (!userInfo.loggedIn) {
+  //   return <Redirect to="/login" />
+  // }
 
-  if (userInfo.userType === 'admin') {
-    return <AdminHome reservations={reservations} getAllReservations={() => 'TODO get all reservations'} />
-  } else if (userInfo.userType === 'endUser') {
+  // if (userInfo.userType === 'admin') {
+  //   return <AdminHome reservations={reservations} getAllReservations={() => 'TODO get all reservations'} />
+  // } else if (userInfo.userType === 'endUser') {
     return <EndUserHomeContainer />
-  }
+  // }
   
 }
 

@@ -43,25 +43,5 @@ class AdminApproveReservations extends React.Component {
 }
 
 
-//   render() {
-//     const { reservations } = this.props;
-
-//     const newReservation = () => {
-      
-
-//     }
-
-//     return(
-//       <div>
-//         <h2>Reservation requests:</h2>
-//         <div class="reservation-container">
-//           <div>1</div>
-//         </div>
-        
-//       </div>
-//     )
-//   }
-// }
-
 
 export default AdminApproveReservations;

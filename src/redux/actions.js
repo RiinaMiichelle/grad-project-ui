@@ -57,9 +57,6 @@ const getAllDogs = (dispatch) => () => {
     });
 }
 
-
-
-
 const createReservation = (reservation) => ({
   type: ACTION_TYPE.CREATE_RESERVATION,
   value: reservation
@@ -81,8 +78,8 @@ const retrievedRerservations = (reservations) => ({
   value: reservations
 })
 
-const getAllReservations = (dispatch) => () => {
-  return fetch('http://localhost:4000/reservations')
+const getAllReservations = (dispatch) => (userId) => {
+  return fetch(`http://localhost:4000/users/${userId}/reservations`)
     .then((resp) => {
       return resp.json();
     })
@@ -91,26 +88,19 @@ const getAllReservations = (dispatch) => () => {
     });
 }
 
-
-
-
 const createReview = (review) => ({
   type: ACTION_TYPE.CREATE_REVIEW,
   value: review
 })
 
-const createAReview = (dispatch) => () => {
+const createAReview = (dispatch) => (reservationId, dogId, reviewText) => {
   superagent
-    .post('http://localhost:4000/reviews')
-    .send({ reservation_id:'', dog_id:'', review_text:''})
+    .post(`http://localhost:4000/reservations/${reservationId}/reviews`)
+    .send({ dog_id: dogId, review_text: reviewText })
     .set('accept', 'json')
     .then(res => {  
-      alert('yay got ' + JSON.stringify(res.body))
-      dispatch(createReview(res))
-    .end((err, res) => {
-      // Calling the end function will send the request
+      dispatch(createReview(res.body))
     });
-  })
 }
 
 const retrievedReviews = (reviews) => ({
@@ -118,8 +108,8 @@ const retrievedReviews = (reviews) => ({
   value: reviews
 })
 
-const getAllReviews = (dispatch) => () => {
-  return fetch('http://localhost:4000/reviews')
+const getAllReviews = (dispatch) => (userId) => {
+  return fetch(`http://localhost:4000/users/${userId}/reviews`)
     .then((resp) => {
       return resp.json();
     })
@@ -127,8 +117,6 @@ const getAllReviews = (dispatch) => () => {
       return dispatch(retrievedReviews(responseJson));
     });
 }
-
-
 
 export default {
   actionTypes: ACTION_TYPE,

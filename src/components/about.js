@@ -14,8 +14,7 @@ function About() {
       <div class="about-explanation">Our app makes it easy to log in, and select an available dog in our shelter
         to take out for an afternoon adventure!</div>
         <div class="about-explanation">When you check your dog back into the shelter, you have the option 
-        to upload a review and any images from your afternoon hike, park playtime etc. 
-        Our shelter would love to use both as marketing material to get our dogs adopted!</div>
+        to upload a review our shelter can use as marketing material to get our dogs adopted!</div>
       <div class="about-images-text">
         <div class="about-dogs">We love seeing our shelter dogs get out and play!</div>
       </div>
