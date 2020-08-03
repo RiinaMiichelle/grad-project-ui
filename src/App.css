@@ -205,6 +205,11 @@
   justify-content: center;
 }
 
+.dog-image {
+  height: 200px;
+  width: 300px;
+}
+
 .material-icons {
   margin-left: 5px;
 }
